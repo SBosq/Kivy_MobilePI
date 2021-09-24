@@ -1,0 +1,136 @@
+ScreenManagement:
+    MenuScreen:
+    AboutUs:
+    FileExplorer:
+    AppAbout:
+<MenuScreen>:
+    name: 'MenuScreen'
+    FloatLayout:
+        Label:
+            text: "This is Luna"
+            font_size: 48
+            size_hint: (1, 0.17)
+            pos_hint: {'x': -0.25, 'y': 0.75}
+    GridLayout:
+        cols: 2
+        Image:
+            source: 'Luna_320.jpeg'
+            size: self.texture_size
+        FloatLayout:
+            Button:
+                text: "File Explorer"
+                font_size: 24
+                size_hint: 0.45, 0.1
+                pos_hint: {'x': 0.2, 'y': 0.78}
+                on_press:
+                    root.manager.transition.direction = "up"
+                    root.manager.current = 'FileExplorer'
+            Button:
+                text: "Devs"
+                font_size: 24
+                size_hint: 0.45, 0.1
+                pos_hint: {'x': 0.2, 'y': 0.58}
+                on_press:
+                    root.manager.transition.direction = "up"
+                    root.manager.current = 'AboutUs'
+            Button:
+                text: "About"
+                font_size: 24
+                size_hint: 0.45, 0.1
+                pos_hint: {'x': 0.2, 'y': 0.38}
+                on_press:
+                    root.manager.transition.direction = "up"
+                    root.manager.current = 'AppInfo'
+            Button:
+                text: "Quit"
+                font_size: 24
+                size_hint: 0.45, 0.1
+                pos_hint: {'x': 0.2, 'y': 0.18}
+                on_press:
+                    app.get_running_app().stop()
+
+<AboutUs>:
+    name:'AboutUs'
+    FloatLayout:
+        Label:
+            text: "About Us!"
+            font_size: 48
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.8}
+    GridLayout:
+        cols: 2
+        rows: 3
+        Image:
+            source: 'kimy_25.png'
+        Image:
+            source: 'saulo_40.png'
+        Label:
+            text: "Kimberly Garcia"
+            font_size: 24
+            halign: 'right'
+            valign: 'middle'
+            size_hint: (0.2, 0.5)
+        Label:
+            text: "Saulo Bosquez"
+            font_size: 24
+            halign: 'right'
+            valign: 'middle'
+            size_hint: (0.2, 0.5)
+        Label:
+            id: link_portafolio
+            font_size: 20
+            markup: True
+            text: '[ref=https://portafoliosfit.um.edu.mx/kimberlygarcia/]Visita mi portafolio[/ref]'
+            color: 1, 0, 1, 1
+            on_ref_press:
+                import webbrowser
+                webbrowser.open('https://portafoliosfit.um.edu.mx/kimberlygarcia/')
+        Label:
+            id: link_portafolio
+            font_size: 20
+            markup: True
+            text: '[ref=https://portafoliosfit.um.edu.mx/saulobosquez/]Visita mi portafolio[/ref]'
+            color: 1, 0, 1, 1
+            on_ref_press:
+                import webbrowser
+                webbrowser.open('https://portafoliosfit.um.edu.mx/saulobosquez/')
+    FloatLayout:
+        Button:
+            size_hint: 0.2, 0.1
+            pos_hint: {'x': 0.4, 'y': 0.025}
+            text: "Main Menu"
+            on_press:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'MenuScreen'
+
+<FileExplorer>:
+    name: 'FileExplorer'
+    FloatLayout:
+        Label:
+            text: "Files 2 Explore!"
+            font_size: 48
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.8}
+        Button:
+            size_hint: 0.2, 0.1
+            pos_hint: {'x': 0.4, 'y': 0.025}
+            text: "Main Menu"
+            on_press:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'MenuScreen'
+
+<AppAbout>:
+    name: 'AppInfo'
+    FloatLayout:
+        Label:
+            text: "App Info"
+            font_size: 48
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.8}
+        Button:
+            size_hint: 0.2, 0.1
+            pos_hint: {'x': 0.4, 'y': 0.025}
+            text: "Main Menu"
+            on_press:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'MenuScreen'
