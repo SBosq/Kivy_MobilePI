@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = KvCalc
+title = Work Visas
 
 # (str) Package name
-package.name = kvcalc
+package.name = Work_Visas
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.kvcalc
@@ -46,10 +46,10 @@ requirements = python3,kivy
 #garden_requirements =
 
 # (str) Presplash of the application
-presplash.filename = sailormoon_320.png
+presplash.filename = Images/H_Traveler.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+icon.filename = Images/Statue_Lib_177.png
 
 # (str) Supported orientation (one of landscape, sensorLandscape, portrait or all)
 orientation = portrait
