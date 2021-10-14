@@ -23,13 +23,15 @@ X_var = visas1[['JOB_TITLE', 'FULL_TIME_POSITION', 'EMPLOYER_NAME', 'EMPLOYER_ST
                 'PREVAILING_WAGE_1']]
 y_var = visas1['CASE_STATUS']
 X_train, X_test, y_train, y_test = train_test_split(X_var, y_var, test_size=0.3, random_state=0)
-model = LogisticRegression(solver='liblinear', random_state=0).fit(X_var, y_var)
+model = LogisticRegression(solver='saga', random_state=0, max_iter=5000).fit(X_var, y_var)
 y_pred = model.predict(X_test)
-print("[0] precision_score: ", precision_score(y_test, y_pred, average='micro'))
-print("[1] precision_score: ", precision_score(y_test, y_pred, average='macro'))
-print("[0] recall_score: ", recall_score(y_test, y_pred, average='micro'))
-print("[1] recall_score: ", recall_score(y_test, y_pred, average='macro'))
-print("[0] F1_score: ", f1_score(y_test, y_pred, average='micro'))
-print("[1] F1_score: ", f1_score(y_test, y_pred, average='macro'))
+ps0 = "{:.02f}".format(precision_score(y_test, y_pred, average='micro'))
+ps1 = "{:.02f}".format(precision_score(y_test, y_pred, average='macro'))
+rs0 = "{:.02f}".format(recall_score(y_test, y_pred, average='micro'))
+rs1 = "{:.02f}".format(recall_score(y_test, y_pred, average='macro'))
+fs0 = "{:.02f}".format(f1_score(y_test, y_pred, average='micro'))
+fs1 = "{:.02f}".format(f1_score(y_test, y_pred, average='macro'))
+data_dict = {'precision': [ps0, ps1], 'recall': [rs0, rs1], 'f1-score': [fs0, fs1]}
+df = pd.DataFrame(data=data_dict, columns=['precision', 'recall', 'f1-score'])
 print(cl("Logistic Regression Model Accuracy: ", attrs=['bold']), cl(round(accuracy_score(y_test, y_pred) * 100, 2), attrs=['bold']), '\n')
-
+print(df)

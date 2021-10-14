@@ -28,7 +28,6 @@ y_var = visas1['CASE_STATUS'].values
 X_train, X_test, y_train, y_test = train_test_split(X_var, y_var, test_size=0.3, random_state=0)
 treez = DecisionTreeClassifier(criterion="gini", max_depth=4, random_state=0).fit(X_train, y_train)
 
-treez.predict(X_test)
 y_pred = treez.predict(X_test)
 print(cl("Decision Tree Model Accuracy: ", attrs=['bold']),
       cl(round(accuracy_score(y_test, y_pred) * 100, 2), attrs=['bold']), '\n')
