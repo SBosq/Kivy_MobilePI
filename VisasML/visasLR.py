@@ -9,15 +9,10 @@ import warnings
 
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
-visas1 = pd.read_csv('visasD2.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
-                                                          'FULL_TIME_POSITION': 'str', 'EMPLOYER_NAME': 'str',
-                                                          'EMPLOYER_STATE': 'str', 'WORKSITE_CITY_1': 'str',
-                                                          'PREVAILING_WAGE_1': 'float'})
-visasNeu = visas1[(visas1 == 'CERTIFIED').any(axis=1)]
-visasNeu1 = visas1[(visas1 == 'DENIED').any(axis=1)]
-visasD1 = pd.read_csv('visasD1.csv')
-visas1 = visas1.append(visasNeu1, ignore_index=True)
-visas1 = visas1.append(visasD1, ignore_index=True)
+visas1 = pd.read_csv('unified_Visas.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
+                                                                'FULL_TIME_POSITION': 'str', 'EMPLOYER_NAME': 'str',
+                                                                'EMPLOYER_STATE': 'str', 'WORKSITE_CITY_1': 'str',
+                                                                'PREVAILING_WAGE_1': 'float'})
 for (columnName, columnData) in visas1.iteritems():
     visas1[columnName] = visas1[columnName].astype('category')
     visas1[columnName] = visas1[columnName].cat.codes

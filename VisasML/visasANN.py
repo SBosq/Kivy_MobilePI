@@ -10,15 +10,12 @@ from collections import Counter
 
 warnings.filterwarnings(action='ignore', category=UndefinedMetricWarning)
 
-visas1 = pd.read_csv('visasD2.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
-                                                          'FULL_TIME_POSITION': 'str', 'EMPLOYER_NAME': 'str',
-                                                          'EMPLOYER_STATE': 'str', 'WORKSITE_CITY_1': 'str',
-                                                          'PREVAILING_WAGE_1': 'float'})
-visasNeu = visas1[(visas1 == 'CERTIFIED').any(axis=1)]
-visasNeu1 = visas1[(visas1 == 'DENIED').any(axis=1)]
-visasD1 = pd.read_csv('visasD1.csv')
-visas1 = visas1.append(visasNeu1, ignore_index=True)
-visas1 = visas1.append(visasD1, ignore_index=True)
+visas1 = pd.read_csv('visunified_VisasasD2.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
+                                                                       'FULL_TIME_POSITION': 'str',
+                                                                       'EMPLOYER_NAME': 'str',
+                                                                       'EMPLOYER_STATE': 'str',
+                                                                       'WORKSITE_CITY_1': 'str',
+                                                                       'PREVAILING_WAGE_1': 'float'})
 for (columnName, columnData) in visas1.iteritems():
     visas1[columnName] = visas1[columnName].astype('category')
     visas1[columnName] = visas1[columnName].cat.codes
@@ -33,5 +30,6 @@ m1 = MLPClassifier(hidden_layer_sizes=(6, 4), activation='identity', random_stat
                    learning_rate_init=0.3)
 m1.fit(X_train, y_train)
 y_pred = m1.predict(X_test)
-print(cl("ANN Model Accuracy: ", attrs=['bold']), cl(round(accuracy_score(y_test, y_pred) * 100, 2), attrs=['bold']), '\n')
+print(cl("ANN Model Accuracy: ", attrs=['bold']), cl(round(accuracy_score(y_test, y_pred) * 100, 2), attrs=['bold']),
+      '\n')
 print(classification_report(y_test, y_pred))
