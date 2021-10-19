@@ -4,13 +4,12 @@ from sklearn.exceptions import UndefinedMetricWarning
 from sklearn.model_selection import train_test_split
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import MinMaxScaler
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report
 from termcolor import colored as cl
-from collections import Counter
 
 warnings.filterwarnings(action='ignore', category=UndefinedMetricWarning)
 
-visas1 = pd.read_csv('visunified_VisasasD2.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
+visas1 = pd.read_csv('unified_Visas.csv', delimiter=',', dtype={'CASE_STATUS': 'str', 'JOB_TITLE': 'str',
                                                                        'FULL_TIME_POSITION': 'str',
                                                                        'EMPLOYER_NAME': 'str',
                                                                        'EMPLOYER_STATE': 'str',

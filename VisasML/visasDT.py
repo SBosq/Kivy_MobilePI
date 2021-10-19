@@ -8,7 +8,8 @@ import warnings
 from sklearn.exceptions import DataConversionWarning
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import classification_report, accuracy_score
+import joblib
 
 warnings.filterwarnings(action='ignore', category=DataConversionWarning)
 
@@ -27,7 +28,9 @@ X_var = normVisas[['JOB_TITLE', 'FULL_TIME_POSITION', 'EMPLOYER_NAME', 'EMPLOYER
 y_var = normVisas['CASE_STATUS'].values
 X_train, X_test, y_train, y_test = train_test_split(X_var, y_var, test_size=0.3, random_state=0)
 treez = DecisionTreeClassifier(criterion="gini", max_depth=10, random_state=0).fit(X_train, y_train)
-y_pred = treez.predict(X_test)
+joblib.dump(treez, 'visasDT.pkl')
+loaded_treez = joblib.load('visasDT.pkl')
+y_pred = loaded_treez.predict(X_test)
 print(cl("Decision Tree Model Accuracy: ", attrs=['bold']),
       cl(round(accuracy_score(y_test, y_pred) * 100, 2), attrs=['bold']), '\n')
 print(classification_report(y_test, y_pred))

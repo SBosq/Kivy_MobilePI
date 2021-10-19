@@ -1,10 +1,10 @@
 import pandas as pd
-from sklearn.exceptions import DataConversionWarning, UndefinedMetricWarning
+from sklearn.exceptions import DataConversionWarning
 from sklearn.model_selection import train_test_split
 from sklearn import svm
 from sklearn.preprocessing import MinMaxScaler
 from termcolor import colored as cl
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report
 
 import warnings
 

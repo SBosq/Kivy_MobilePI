@@ -34,7 +34,7 @@ print(cl("KNN Model Accuracy: ", attrs=['bold']), cl(round(accuracy_score(y_test
       '\n')
 print(classification_report(y_test, yhat))
 """num = list(map(str, input('Introduzca la informacion de su aplicacion: Es decir: Job Title, '
-                          'tiempo completo (Y) o (N), Employer Name, Employer State, Employer City, sueldo, \n '
+                          'tiempo completo (Y) o (N), Employer Name, Employer State, Employer City, y sueldo \n '
                           'Separados por una (,): ').split(',')))
 print(num)
 num = np.array(num).reshape(1, -1)
