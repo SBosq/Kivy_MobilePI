@@ -1,0 +1,766 @@
+ScreenManagement:
+    MenuScreen:
+    AboutUs:
+    CalcProb:
+    AppAbout:
+<MenuScreen>:
+    name: 'MenuScreen'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Images/blue_gradient.png'
+    FloatLayout:
+        Label:
+            text: "HOME"
+            font_size: 48
+            size_hint: 0.35, 0.2
+            color: 0, 0, 0, 1
+            pos_hint: {'center_x':0.15, 'center_y':0.88}
+            background_color: (153/255, 255/255, 255/255, 1)
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+        Image:
+            source: 'Images/passport.png'
+            orientation: 'vertical'
+            size_hint: 1, 0.48
+            pos_hint: {"x":0, "y":0.5}
+        RoundedButton:
+            text: "CALCULATE PROBABILITY"
+            font_size: 24
+            size_hint: 0.4, 0.1
+            pos_hint: {'x': 0.3, 'y': 0.38}
+            on_press:
+                root.manager.transition.direction = "left"
+                root.manager.current = 'CalcProb'
+        RoundedButton:
+            text: "DEVS"
+            font_size: 36
+            size_hint: 0.4, 0.1
+            pos_hint: {'x': 0.3, 'y': 0.26}
+            on_press:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'AboutUs'
+        RoundedButton:
+            text: "ABOUT"
+            font_size: 36
+            size_hint: 0.4, 0.1
+            pos_hint: {'x': 0.3, 'y': 0.14}
+            on_press:
+                root.manager.transition.direction = "up"
+                root.manager.current = 'AppInfo'
+        RoundedButton:
+            text: "QUIT"
+            font_size: 36
+            size_hint: 0.4, 0.1
+            pos_hint: {'x': 0.3, 'y': 0.02}
+            on_press:
+                app.get_running_app().stop()
+
+<AboutUs>:
+    name:'AboutUs'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Images/blue_gradient.png'
+    FloatLayout:
+        Label:
+            text: "ABOUT US"
+            font_size: 48
+            size_hint: 0.35, 0.2
+            color: 0, 0, 0, 1
+            pos_hint: {'center_x':0.84, 'center_y':0.88}
+            background_color: (153/255, 255/255, 255/255, 1)
+            canvas.before:
+				Color:
+					rgba: self.background_color
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+    FloatLayout:
+        Image:
+            source: 'Images/FIT.png'
+            pos_hint: {'x':-0.35, 'y':0.38}
+        Image:
+            source: 'Images/Kimy.png'
+            pos_hint: {'x':0.35, 'y':-0.2}
+        Image:
+            source: 'Images/Saulo.png'
+            pos_hint: {'x':-0.35, 'y':.14}
+        Label:
+            text: 'KIMBERLY GARCIA'
+            font_size: 48
+            pos_hint: {'x':-0.2, 'y':-0.15}
+            color: 0, 0, 0, 1
+        Label:
+            text: 'SAULO BOSQUEZ'
+            font_size: 48
+            pos_hint: {'x':0.05, 'y':0.18}
+            color: 0, 0, 0, 1
+        Label:
+            pos_hint: {'x':-0.2, 'y':-0.23}
+            id: link_portafolio
+            font_size: 36
+            markup: True
+            text:'[ref=https://portafoliosfit.um.edu.mx/kimberlygarcia/]PORTAFOLIO[/ref]'
+            color: (0/255, 0/255, 0/255, 1)
+            on_ref_press:
+                import webbrowser
+                webbrowser.open('https://portafoliosfit.um.edu.mx/kimberlygarcia/')
+        Label:
+            pos_hint: {'x':0.05, 'y':0.1}
+            id: link_portafolio
+            font_size: 36
+            markup: True
+            text:'[ref=https://portafoliosfit.um.edu.mx/saulobosquez/]PORTAFOLIO[/ref]'
+            color: (0/255, 0/255, 0/255, 1)
+            on_ref_press:
+                import webbrowser
+                webbrowser.open('https://portafoliosfit.um.edu.mx/saulobosquez/')
+    FloatLayout:
+        Button:
+            size_hint: 0.1, 0.1
+            pos_hint: {'x': 0.05, 'y': 0.035}
+            background_color: 0,0,0,0
+            on_press:
+                root.manager.transition.direction = "up"
+                root.manager.current = 'MenuScreen'
+            Image:
+                source: 'Images/down-arrow.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+
+
+
+<CalcProb>:
+    spinner: spinner
+    name: 'CalcProb'
+    on_enter: self.limit_spinner()
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Images/blue_gradient.png'
+    FloatLayout:
+        Label:
+            text: "EXPLORE"
+            font_size: 48
+            size_hint: 0.35, 0.2
+            color: 0, 0, 0, 1
+            pos_hint: {'x': 0.69, 'y': 0.05}
+            background_color: (153/255, 255/255, 255/255, 1)
+            canvas.before:
+				Color:
+					rgba: self.background_color
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+		Label:
+            text: "JOB TITLE:"
+            font_size: 30
+            pos_hint: {'x': 0.02, 'y': 0.85}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: jobTitle
+            hint_text: 'EX. COMPUTER SYSTEMS ANALYST'
+            pos_hint: {'x': 0.03, 'y': 0.75}
+            size_hint: 0.275, 0.1
+            on_text:
+        Label:
+            text: "FULL TIME POSITION:"
+            font_size: 24
+            pos_hint: {'x': 0.55, 'y': 0.44}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        Label:
+            text: "Yes"
+            color: 0, 0, 0, 1
+            font_size: 24
+            pos_hint: {'x': 0.47, 'y': 0.38}
+            size_hint: 0.275, 0.1
+        CheckBox:
+            color: (0/255, 0/255, 0/255, 1)
+            pos_hint: {'x': 0.56, 'y': 0.32}
+            size_hint: 0.1, 0.1
+            text: "Yes"
+            group: "ftPosition"
+            id: ftPosition
+            on_active: root.position = self.text
+        Label:
+            text: "No"
+            color: 0, 0, 0, 1
+            font_size: 24
+            pos_hint: {'x': 0.64, 'y': 0.38}
+            size_hint: 0.275, 0.1
+        CheckBox:
+            color: (0/255, 0/255, 0/255, 1)
+            pos_hint: {'x': 0.73, 'y': 0.32}
+            size_hint: 0.1, 0.1
+            text: "No"
+            group: "ftPosition"
+            id: ftPosition
+            on_active: root.position = self.text
+        Label:
+            text: "EMPLOYER NAME:"
+            font_size: 30
+            pos_hint: {'x': 0.36, 'y': 0.85}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: empName
+            hint_text: 'EX. AMAZON'
+            pos_hint: {'x': 0.36, 'y': 0.75}
+            size_hint: 0.275, 0.1
+            on_text:
+        Spinner:
+            id: spinner
+            size_hint: 0.3, 0.1
+            pos_hint: {'x': 0.15, 'y': 0.55}
+        RoundedButton:
+            id: state
+            size_hint: 0.31, 0.1
+            pos_hint: {'x': 0.15, 'y': 0.55}
+            text: "STATE"
+            font_size: 30
+            background_color: 0/255, 36/255, 73/255, 1
+            on_parent: drop_content.dismiss()
+            on_release: drop_content.open(self)
+        Label:
+            text: "EMPLOYER CITY:"
+            font_size: 30
+            pos_hint: {'x': 0.7, 'y': 0.85}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: empCity
+            hint_text: 'EX. NEW YORK'
+            pos_hint: {'x': 0.7, 'y': 0.75}
+            size_hint: 0.275, 0.1
+            on_text:
+        Label:
+            text: "SALARY:"
+            font_size: 30
+            pos_hint: {'x': 0.55, 'y': 0.64}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: salary
+            hint_text: '$7500'
+            pos_hint: {'x': 0.55, 'y': 0.55}
+            size_hint: 0.275, 0.1
+            on_text:
+        Label:
+            text: "YEAR:"
+            font_size: 30
+            pos_hint: {'x': 0.15, 'y': 0.44}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: year
+            hint_text: "2015, 2016, 2017, 2018, 2019, etc."
+            pos_hint: {'x': 0.15, 'y': 0.34}
+            size_hint: 0.275, 0.1
+            on_text:
+        DropDown:
+            id: drop_content
+            on_select: state.text = f'{args[1]}'
+
+            Button:
+                id: btn1
+                text: 'ALASKA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('AK')
+
+            Button:
+                id: btn3
+                text: 'ALABAMA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('AL')
+
+            Button:
+                id: btn4
+                text: 'ARKANSAS'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('AR')
+
+            Button:
+                id: btn5
+                text: 'ARIZONA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('AZ')
+
+            Button:
+                id: btn6
+                text: 'CALIFORNIA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('CA')
+
+            Button:
+                id: btn7
+                text: 'COLORADO'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('CO')
+
+            Button:
+                id: btn8
+                text: 'CONNECTICUT'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('CT')
+
+            Button:
+                id: btn9
+                text: 'DELAWARE'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('DE')
+
+            Button:
+                id: btn10
+                text: 'FLORIDA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('FL')
+
+            Button:
+                id: btn11
+                text: 'GEORGIA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('GA')
+
+            Button:
+                id: btn12
+                text: 'HAWAII'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('HI')
+
+            Button:
+                id: btn13
+                text: 'IDAHO'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('ID')
+
+            Button:
+                id: btn14
+                text: 'ILLINOIS'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('IL')
+
+            Button:
+                id: btn15
+                text: 'INDIANA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('IN')
+
+            Button:
+                id: btn16
+                text: 'IOWA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('IA')
+
+            Button:
+                id: btn17
+                text: 'KANSAS'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('KS')
+
+            Button:
+                id: btn18
+                text: 'KENTUCKY'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('KY')
+
+            Button:
+                id: btn19
+                text: 'LOUISIANA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('LA')
+
+            Button:
+                id: btn20
+                text: 'MAINE'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('ME')
+
+            Button:
+                id: btn21
+                text: 'MARYLAND'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MD')
+
+            Button:
+                id: btn22
+                text: 'MASSACHUSETTS'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MA')
+
+            Button:
+                id: btn23
+                text: 'MICHIGAN'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MI')
+
+            Button:
+                id: btn24
+                text: 'MINNESOTA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MN')
+
+            Button:
+                id: btn25
+                text: 'MISSISSIPPI'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MS')
+
+            Button:
+                id: btn26
+                text: 'MISSOURI'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MO')
+
+            Button:
+                id: btn27
+                text: 'MONTANA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('MT')
+
+            Button:
+                id: btn28
+                text: 'NEBRASKA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NE')
+
+            Button:
+                id: btn29
+                text: 'NEVADA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NV')
+
+            Button:
+                id: btn30
+                text: 'NEW HAMPSHIRE'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NH')
+
+            Button:
+                id: btn31
+                text: 'NEW JERSEY'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NJ')
+
+            Button:
+                id: btn32
+                text: 'NEW MEXICO'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NM')
+
+            Button:
+                id: btn33
+                text: 'NEW YORK'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NY')
+
+            Button:
+                id: btn34
+                text: 'NORTH CAROLINA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('NC')
+
+            Button:
+                id: btn35
+                text: 'NORTH DAKOTA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('ND')
+
+            Button:
+                id: btn36
+                text: 'OHIO'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('OH')
+
+            Button:
+                id: btn37
+                text: 'OKLAHOMA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('OK')
+
+            Button:
+                id: btn37
+                text: 'OREGON'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('OR')
+
+            Button:
+                id: btn38
+                text: 'PENNSYLVANIA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('PA')
+
+            Button:
+                id: btn39
+                text: 'RHODE ISLAND'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('RI')
+
+            Button:
+                id: btn40
+                text: 'SOUTH CAROLINA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('SC')
+
+            Button:
+                id: btn41
+                text: 'SOUTH DAKOTA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('SD')
+
+            Button:
+                id: btn42
+                text: 'TENNESSEE'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('TN')
+
+            Button:
+                id: btn43
+                text: 'TEXAS'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('TX')
+
+            Button:
+                id: btn44
+                text: 'UTAH'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('UT')
+
+            Button:
+                id: btn45
+                text: 'VERMONT'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('VT')
+
+            Button:
+                id: btn46
+                text: 'VIRGINIA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('VA')
+
+            Button:
+                id: btn47
+                text: 'WASHINGTON'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('WA')
+
+            Button:
+                id: btn48
+                text: 'WEST VIRGINIA'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('WV')
+
+            Button:
+                id: btn49
+                text: 'WISCONSIN'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('WI')
+
+            Button:
+                id: btn50
+                text: 'WYOMING'
+                size_hint: 2, None
+                height: 72
+                background_color: 0/255, 104/255, 208/255, 1
+                on_release: drop_content.select('WY')
+
+        Button:
+            size_hint: 0.1, 0.1
+            pos_hint: {'x': 0.05, 'y': 0.025}
+            background_color: 0,0,0,0
+            on_press:
+                root.manager.transition.direction = "right"
+                root.manager.current = 'MenuScreen'
+            Image:
+                source: 'Images/back-arrow.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+        RoundedButton:
+            text: 'CALCULATE!'
+            font_size: 36
+            halign: 'center'
+            size_hint: 0.3, 0.1
+            pos_hint: {'x': 0.15, 'y': 0.15}
+            on_press: root.calculate()
+
+        TextInput:
+            id: result_ML
+            pos_hint: {'x': 0.5, 'y': 0.15}
+            size_hint: 0.175, 0.1
+            hint_text: 'APPROVED OR DENIED'
+            readonly: True
+
+
+<AppAbout>:
+    name: 'AppInfo'
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Images/blue_gradient.png'
+    FloatLayout:
+        Label:
+            text: "APP INFO"
+            font_size: 48
+            color: 0, 0, 0, 1
+            size_hint: 0.35, 0.2
+            pos_hint: {'center_x':0.15, 'center_y':0.88}
+            background_color: (153/255, 255/255, 255/255, 1)
+            canvas.before:
+				Color:
+					rgba: self.background_color
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+		Label:
+		    markup: True
+            text:
+                '''APLICACIÓN MÓVIL CON APRENDIZAJE AUTOMÁTICO SUPERVISADO. LA CUAL DA UNA PREDICCIÓN DE SI SE
+                LE PODRÁ OTORGAR O NO UNA VISA DE TRABAJO EN ESTADOS UNIDOS A UN PROFESIONISTA, EN FUNCIÓN DEL
+                PORCENTAJE PREDECIDO.
+                \nEL MODELO DE MACHINE LEARNING QUE SE USO EN ESTA APLICACIÓN FUE [b]DECISION TREES[/b] EL CUAL OBTUVO
+                UNA [b]EXACTITUD[/b] DEL [b]81%[/b]. ESTE MODELO TIENE [b]81%[/b] DE [b]PRECISION[/b], [b]79%[/b] DE [b]RECALL[/b], Y [b]80%[/b] DE [b]F1 SCORE[/b].'''
+            font_size: 32
+            halign: "center"
+            size_hint: 0.85, 0.35
+            text_size: self.width, None
+            height: self.texture_size[1]
+            pos_hint: {'center_x':0.5, 'center_y':0.45}
+            background_color: (0/255, 36/255, 73/255, 1)
+            canvas.before:
+				Color:
+					rgba: self.background_color
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+        Button:
+            size_hint: 0.1, 0.1
+            pos_hint: {'x': 0.05, 'y': 0.035}
+            background_color: 0,0,0,0
+            on_press:
+                root.manager.transition.direction = "down"
+                root.manager.current = 'MenuScreen'
+            Image:
+                source: 'Images/up-arrow.png'
+                center_x: self.parent.center_x
+                center_y: self.parent.center_y
+
+<RoundedButton@Button>
+	background_color: (0,0,0,0)
+	background_normal: ''
+	canvas.before:
+		Color:
+			rgba: (0/255,25/255,51/255,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [20]
