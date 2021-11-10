@@ -29,8 +29,8 @@ ScreenManagement:
                 center_y: self.parent.center_y
         FloatLayout:
             RoundedButton:
-                size_hint: 0.1, 0.05
-                pos_hint: {'x': 0.88, 'y': 0.8}
+                size_hint: 0.13, 0.08
+                pos_hint: {'x': 0.86, 'y': 0.77}
                 on_press:
                     root.manager.transition.direction = "up"
                     root.manager.current = 'AboutUs'
@@ -67,12 +67,13 @@ ScreenManagement:
             source: 'Images/Background.png'
     FloatLayout:
         Label:
-            text: "ABOUT US"
+            markup: True
+            text: "[b]ABOUT US[/b]"
             font_size: 48
             size_hint: 0.32, 0.12
             color: 0, 0, 0, 1
             pos_hint: {'center_x':0.85, 'center_y':0.88}
-            background_color: (170/255,126/255,152/255,0.75)
+            background_color: (170/255,126/255,152/255,1)
             canvas.before:
 				Color:
 					rgba: self.background_color
@@ -85,22 +86,28 @@ ScreenManagement:
             pos_hint: {'x':-0.35, 'y':0.38}
         Image:
             source: 'Images/Kimy.png'
-            pos_hint: {'x':0.35, 'y':-0.2}
+            pos_hint: {'center_x':0.75, 'center_y':0.25}
+            size_hint_x: 0.4
+            allow_stretch: True
         Image:
             source: 'Images/Saulo.png'
-            pos_hint: {'x':-0.35, 'y':.14}
+            pos_hint: {'center_x':0.25, 'center_y':0.67}
+            size_hint_x: 0.4
+            allow_stretch: True
         Label:
-            text: 'KIMBERLY GARCIA'
+            markup: True
+            text: '[b]KIMBERLY GARCIA[/b]'
             font_size: 48
-            pos_hint: {'x':-0.2, 'y':-0.15}
+            pos_hint: {'center_x':0.3, 'center_y':0.3}
             color: 0, 0, 0, 1
         Label:
-            text: 'SAULO BOSQUEZ'
+            markup: True
+            text: '[b]SAULO BOSQUEZ[/b]'
             font_size: 48
-            pos_hint: {'x':0.05, 'y':0.18}
+            pos_hint: {'center_x':0.7, 'center_y':0.7}
             color: 0, 0, 0, 1
         Label:
-            pos_hint: {'x':-0.2, 'y':-0.23}
+            pos_hint: {'center_x':0.3, 'center_y':0.25}
             id: link_portafolio
             font_size: 36
             markup: True
@@ -110,7 +117,7 @@ ScreenManagement:
                 import webbrowser
                 webbrowser.open('https://portafoliosfit.um.edu.mx/kimberlygarcia/')
         Label:
-            pos_hint: {'x':0.05, 'y':0.1}
+            pos_hint: {'center_x':0.7, 'center_y':0.65}
             id: link_portafolio
             font_size: 36
             markup: True
@@ -146,7 +153,8 @@ ScreenManagement:
             source: 'Images/Background.png'
     FloatLayout:
         Label:
-            text: "EXPLORE"
+            markup: True
+            text: "[b]EXPLORE[/b]"
             font_size: 48
             size_hint: 0.3, 0.12
             color: 0, 0, 0, 1
@@ -160,111 +168,116 @@ ScreenManagement:
 					pos: self.pos
 		Label:
             text: "JOB TITLE:"
-            font_size: 30
-            pos_hint: {'x': 0.02, 'y': 0.85}
+            font_size: 34
+            pos_hint: {'center_x': 0.25, 'center_y': 0.9}
             size_hint: 0.275, 0.1
             color: 0, 0, 0, 1
         TextInput:
             id: jobTitle
-            hint_text: 'EX. COMPUTER SYSTEMS ANALYST'
-            pos_hint: {'x': 0.03, 'y': 0.75}
-            size_hint: 0.275, 0.1
+            hint_text: 'EX. DEVELOPER'
+            hint_font_size: 10
+            pos_hint: {'center_x': 0.25, 'center_y': 0.85}
+            size_hint: 0.35, 0.05
             on_text:
         Label:
-            text: "FULL TIME POSITION:"
-            font_size: 24
-            pos_hint: {'x': 0.55, 'y': 0.44}
-            size_hint: 0.275, 0.1
-            color: 0, 0, 0, 1
-        Label:
-            text: "Yes"
-            color: 0, 0, 0, 1
-            font_size: 24
-            pos_hint: {'x': 0.47, 'y': 0.38}
-            size_hint: 0.275, 0.1
-        CheckBox:
-            color: (0/255, 0/255, 0/255, 1)
-            pos_hint: {'x': 0.56, 'y': 0.32}
-            size_hint: 0.1, 0.1
-            text: "Yes"
-            group: "ftPosition"
-            id: ftPosition
-            on_active: root.position = self.text
-        Label:
-            text: "No"
-            color: 0, 0, 0, 1
-            font_size: 24
-            pos_hint: {'x': 0.64, 'y': 0.38}
-            size_hint: 0.275, 0.1
-        CheckBox:
-            color: (0/255, 0/255, 0/255, 1)
-            pos_hint: {'x': 0.73, 'y': 0.32}
-            size_hint: 0.1, 0.1
-            text: "No"
-            group: "ftPosition"
-            id: ftPosition
-            on_active: root.position = self.text
-        Label:
             text: "EMPLOYER NAME:"
-            font_size: 30
-            pos_hint: {'x': 0.36, 'y': 0.85}
+            font_size: 34
+            pos_hint: {'center_x': 0.25, 'center_y': 0.75}
             size_hint: 0.275, 0.1
             color: 0, 0, 0, 1
         TextInput:
             id: empName
             hint_text: 'EX. AMAZON'
-            pos_hint: {'x': 0.36, 'y': 0.75}
-            size_hint: 0.275, 0.1
+            hint_font_size: 16
+            pos_hint: {'center_x': 0.25, 'center_y': 0.7}
+            size_hint: 0.35, 0.05
             on_text:
-        Spinner:
-            id: spinner
-            size_hint: 0.31, 0.1
-            pos_hint: {'x': 0.15, 'y': 0.55}
-            background_color: (170/255,126/255,152/255,0.75)
-        RoundedButton1:
-            id: state
-            size_hint: 0.31, 0.1
-            pos_hint: {'x': 0.15, 'y': 0.55}
-            text: "STATE"
-            font_size: 30
-            background_color: (170/255,126/255,152/255,0.75)
-            on_parent: drop_content.dismiss()
-            on_release: drop_content.open(self)
         Label:
             text: "EMPLOYER CITY:"
-            font_size: 30
-            pos_hint: {'x': 0.7, 'y': 0.85}
+            font_size: 34
+            pos_hint: {'center_x': 0.25, 'center_y': 0.6}
             size_hint: 0.275, 0.1
             color: 0, 0, 0, 1
         TextInput:
             id: empCity
-            hint_text: 'EX. NEW YORK'
-            pos_hint: {'x': 0.7, 'y': 0.75}
-            size_hint: 0.275, 0.1
-            on_text:
-        Label:
-            text: "SALARY:"
-            font_size: 30
-            pos_hint: {'x': 0.55, 'y': 0.64}
-            size_hint: 0.275, 0.1
-            color: 0, 0, 0, 1
-        TextInput:
-            id: salary
-            hint_text: '$7500'
-            pos_hint: {'x': 0.55, 'y': 0.55}
-            size_hint: 0.275, 0.1
+            hint_text: 'EX. UTAH'
+            hint_font_size: 12
+            pos_hint: {'center_x': 0.25, 'center_y': 0.55}
+            size_hint: 0.35, 0.05
             on_text:
         Label:
             text: "YEAR:"
-            font_size: 30
-            pos_hint: {'x': 0.15, 'y': 0.44}
+            font_size: 34
+            pos_hint: {'center_x': 0.25, 'center_y': 0.45}
             size_hint: 0.275, 0.1
             color: 0, 0, 0, 1
         TextInput:
             id: year
-            hint_text: "2015, 2016, 2017, 2018, 2019, etc."
-            pos_hint: {'x': 0.15, 'y': 0.34}
+            hint_text: "2015 - 2019, etc."
+            hint_font_size: 12
+            pos_hint: {'center_x': 0.25, 'center_y': 0.4}
+            size_hint: 0.35, 0.05
+            on_text:
+        Label:
+            text: "FULL TIME \nPOSITION:"
+            font_size: 32
+            pos_hint: {'center_x': 0.75, 'center_y': 0.55}
             size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        Label:
+            text: "Yes"
+            color: 0, 0, 0, 1
+            font_size: 32
+            pos_hint: {'center_x': 0.65, 'center_y': 0.47}
+            size_hint: 0.275, 0.1
+        CheckBox:
+            color: (0/255, 0/255, 0/255, 1)
+            pos_hint: {'center_x': 0.65, 'center_y': 0.41}
+            size_hint: 0.1, 0.1
+            text: "Yes"
+            group: "ftPosition"
+            id: ftPosition
+            on_active: root.position = self.text
+        Label:
+            text: "No"
+            color: 0, 0, 0, 1
+            font_size: 32
+            pos_hint: {'center_x': 0.85, 'center_y': 0.47}
+            size_hint: 0.275, 0.1
+        CheckBox:
+            color: (0/255, 0/255, 0/255, 1)
+            pos_hint: {'center_x': 0.85, 'center_y': 0.41}
+            size_hint: 0.1, 0.1
+            text: "No"
+            group: "ftPosition"
+            id: ftPosition
+            on_active: root.position = self.text
+        Spinner:
+            id: spinner
+            size_hint: 0.31, 0.05
+            pos_hint: {'center_x': 0.75, 'center_y': 0.85}
+            background_color: (170/255,126/255,152/255,0.75)
+        RoundedButton1:
+            id: state
+            size_hint: 0.31, 0.05
+            pos_hint: {'center_x': 0.75, 'center_y': 0.85}
+            text: "STATE"
+            font_size: 34
+            background_color: (170/255,126/255,152/255,0.75)
+            on_parent: drop_content.dismiss()
+            on_release: drop_content.open(self)
+        Label:
+            text: "SALARY:"
+            font_size: 34
+            pos_hint: {'center_x': 0.75, 'center_y': 0.75}
+            size_hint: 0.275, 0.1
+            color: 0, 0, 0, 1
+        TextInput:
+            id: salary
+            hint_text: 'EX. $7500'
+            hint_font_size: 16
+            pos_hint: {'center_x': 0.75, 'center_y': 0.68}
+            size_hint: 0.275, 0.05
             on_text:
         DropDown:
             id: drop_content
@@ -274,7 +287,7 @@ ScreenManagement:
                 id: btn1
                 text: 'ALASKA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('AK')
@@ -283,7 +296,7 @@ ScreenManagement:
                 id: btn3
                 text: 'ALABAMA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('AL')
@@ -292,7 +305,7 @@ ScreenManagement:
                 id: btn4
                 text: 'ARKANSAS'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('AR')
@@ -301,7 +314,7 @@ ScreenManagement:
                 id: btn5
                 text: 'ARIZONA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('AZ')
@@ -310,7 +323,7 @@ ScreenManagement:
                 id: btn6
                 text: 'CALIFORNIA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('CA')
@@ -319,7 +332,7 @@ ScreenManagement:
                 id: btn7
                 text: 'COLORADO'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('CO')
@@ -328,7 +341,7 @@ ScreenManagement:
                 id: btn8
                 text: 'CONNECTICUT'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('CT')
@@ -337,7 +350,7 @@ ScreenManagement:
                 id: btn9
                 text: 'DELAWARE'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('DE')
@@ -346,7 +359,7 @@ ScreenManagement:
                 id: btn10
                 text: 'FLORIDA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('FL')
@@ -355,7 +368,7 @@ ScreenManagement:
                 id: btn11
                 text: 'GEORGIA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('GA')
@@ -364,7 +377,7 @@ ScreenManagement:
                 id: btn12
                 text: 'HAWAII'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('HI')
@@ -373,7 +386,7 @@ ScreenManagement:
                 id: btn13
                 text: 'IDAHO'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('ID')
@@ -382,7 +395,7 @@ ScreenManagement:
                 id: btn14
                 text: 'ILLINOIS'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('IL')
@@ -391,7 +404,7 @@ ScreenManagement:
                 id: btn15
                 text: 'INDIANA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('IN')
@@ -400,7 +413,7 @@ ScreenManagement:
                 id: btn16
                 text: 'IOWA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('IA')
@@ -409,7 +422,7 @@ ScreenManagement:
                 id: btn17
                 text: 'KANSAS'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('KS')
@@ -418,7 +431,7 @@ ScreenManagement:
                 id: btn18
                 text: 'KENTUCKY'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('KY')
@@ -427,7 +440,7 @@ ScreenManagement:
                 id: btn19
                 text: 'LOUISIANA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('LA')
@@ -436,7 +449,7 @@ ScreenManagement:
                 id: btn20
                 text: 'MAINE'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('ME')
@@ -445,7 +458,7 @@ ScreenManagement:
                 id: btn21
                 text: 'MARYLAND'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MD')
@@ -454,7 +467,7 @@ ScreenManagement:
                 id: btn22
                 text: 'MASSACHUSETTS'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MA')
@@ -463,7 +476,7 @@ ScreenManagement:
                 id: btn23
                 text: 'MICHIGAN'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MI')
@@ -472,7 +485,7 @@ ScreenManagement:
                 id: btn24
                 text: 'MINNESOTA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MN')
@@ -481,7 +494,7 @@ ScreenManagement:
                 id: btn25
                 text: 'MISSISSIPPI'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MS')
@@ -490,7 +503,7 @@ ScreenManagement:
                 id: btn26
                 text: 'MISSOURI'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MO')
@@ -499,7 +512,7 @@ ScreenManagement:
                 id: btn27
                 text: 'MONTANA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('MT')
@@ -508,7 +521,7 @@ ScreenManagement:
                 id: btn28
                 text: 'NEBRASKA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NE')
@@ -517,7 +530,7 @@ ScreenManagement:
                 id: btn29
                 text: 'NEVADA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NV')
@@ -526,7 +539,7 @@ ScreenManagement:
                 id: btn30
                 text: 'NEW HAMPSHIRE'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NH')
@@ -535,7 +548,7 @@ ScreenManagement:
                 id: btn31
                 text: 'NEW JERSEY'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NJ')
@@ -544,7 +557,7 @@ ScreenManagement:
                 id: btn32
                 text: 'NEW MEXICO'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NM')
@@ -553,7 +566,7 @@ ScreenManagement:
                 id: btn33
                 text: 'NEW YORK'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NY')
@@ -562,7 +575,7 @@ ScreenManagement:
                 id: btn34
                 text: 'NORTH CAROLINA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('NC')
@@ -571,7 +584,7 @@ ScreenManagement:
                 id: btn35
                 text: 'NORTH DAKOTA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('ND')
@@ -580,7 +593,7 @@ ScreenManagement:
                 id: btn36
                 text: 'OHIO'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('OH')
@@ -589,7 +602,7 @@ ScreenManagement:
                 id: btn37
                 text: 'OKLAHOMA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('OK')
@@ -598,7 +611,7 @@ ScreenManagement:
                 id: btn37
                 text: 'OREGON'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('OR')
@@ -607,7 +620,7 @@ ScreenManagement:
                 id: btn38
                 text: 'PENNSYLVANIA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('PA')
@@ -616,7 +629,7 @@ ScreenManagement:
                 id: btn39
                 text: 'RHODE ISLAND'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('RI')
@@ -625,7 +638,7 @@ ScreenManagement:
                 id: btn40
                 text: 'SOUTH CAROLINA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('SC')
@@ -634,7 +647,7 @@ ScreenManagement:
                 id: btn41
                 text: 'SOUTH DAKOTA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('SD')
@@ -643,7 +656,7 @@ ScreenManagement:
                 id: btn42
                 text: 'TENNESSEE'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('TN')
@@ -652,7 +665,7 @@ ScreenManagement:
                 id: btn43
                 text: 'TEXAS'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('TX')
@@ -661,7 +674,7 @@ ScreenManagement:
                 id: btn44
                 text: 'UTAH'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('UT')
@@ -670,7 +683,7 @@ ScreenManagement:
                 id: btn45
                 text: 'VERMONT'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('VT')
@@ -679,7 +692,7 @@ ScreenManagement:
                 id: btn46
                 text: 'VIRGINIA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('VA')
@@ -688,7 +701,7 @@ ScreenManagement:
                 id: btn47
                 text: 'WASHINGTON'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('WA')
@@ -697,7 +710,7 @@ ScreenManagement:
                 id: btn48
                 text: 'WEST VIRGINIA'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('WV')
@@ -706,7 +719,7 @@ ScreenManagement:
                 id: btn49
                 text: 'WISCONSIN'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('WI')
@@ -715,7 +728,7 @@ ScreenManagement:
                 id: btn50
                 text: 'WYOMING'
                 size_hint: 2, None
-                font_size: 14
+                font_size: 28
                 height: 72
                 background_color: (170/255,126/255,152/255,1)
                 on_release: drop_content.select('WY')
@@ -734,17 +747,18 @@ ScreenManagement:
 
         RoundedButton1:
             text: 'CALCULATE!'
-            font_size: 36
+            font_size: 38
             halign: 'center'
-            size_hint: 0.3, 0.1
-            pos_hint: {'x': 0.2, 'y': 0.15}
+            size_hint: 0.3, 0.05
+            pos_hint: {'center_x': 0.3, 'center_y': 0.25}
             on_press: root.calculate()
 
         TextInput:
             id: result_ML
-            pos_hint: {'x': 0.56, 'y': 0.15}
-            size_hint: 0.25, 0.1
+            pos_hint: {'center_x': 0.7, 'center_y': 0.25}
+            size_hint: 0.3, 0.05
             hint_text: 'APPROVED OR DENIED'
+            hint_font_size: 16
             readonly: True
 
 
@@ -757,12 +771,13 @@ ScreenManagement:
             source: 'Images/Background.png'
     FloatLayout:
         Label:
-            text: "APP INFO"
+            markup: True
+            text: "[b]APP INFO[/b]"
             font_size: 48
             color: 0, 0, 0, 1
             size_hint: 0.3, 0.12
             pos_hint: {'center_x':0.14, 'center_y':0.88}
-            background_color: (170/255,126/255,152/255,0.75)
+            background_color: (170/255,126/255,152/255,1)
             canvas.before:
 				Color:
 					rgba: self.background_color
