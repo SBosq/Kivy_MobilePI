@@ -1,31 +1,26 @@
-
 # -- coding: utf-8 --
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.metrics import dp
-from kivy.lang.builder import Builder
+from kivy.lang import Builder
 from kivy.properties import StringProperty
-from kivy.uix.dropdown import DropDown
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import Screen, ScreenManager
 import requests
 import json
-
-
-class ScreenManagement(ScreenManager):
-    pass
 
 
 class MenuScreen(Screen):
     pass
 
 
-class DropDowns(DropDown):
+class AboutScreen(Screen):
     pass
 
 
-answers = []
+class DevsScreen(Screen):
+    pass
 
 
-class CalcProb(Screen):
+class ProbScreen(Screen):
     def limit_spinner(self, *args):
         max_items = 5  # max number of Buttons to display in the Spinner DropDown
         self.spinner.dropdown_cls.max_height = max_items * dp(
@@ -53,24 +48,22 @@ class CalcProb(Screen):
         self.ids.result_ML.text = request.json()
         request.close()
 
-    pass
+
+sm = ScreenManager()
+sm.add_widget(MenuScreen(name='menu'))
+sm.add_widget(AboutScreen(name='about'))
+sm.add_widget(DevsScreen(name='devs'))
+sm.add_widget(ProbScreen(name='prob'))
 
 
-class AboutUs(Screen):
-    pass
+class MLApp(MDApp):
 
-
-class AppAbout(Screen):
-    pass
-
-
-sm = Builder.load_file("screen.kv")
-
-
-class ScreenApp(App):
     def build(self):
-        return sm
+        self.theme_cls.primary_palette = "Blue"
+        self.theme_cls.primary_hue = "800"
+        screen = Builder.load_file("screen.kv")
+
+        return screen
 
 
-if __name__ == '__main__':
-    ScreenApp().run()
+MLApp().run()
